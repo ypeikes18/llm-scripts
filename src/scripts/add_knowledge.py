@@ -24,7 +24,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         transcripts_path = sys.argv[1]
     else:
-        transcripts_path = "./transcripts"
+        transcripts_path = "./test_transcripts"
 
     vector_store = VectorStore()
     transcripts = get_files(transcripts_path)
@@ -37,4 +37,3 @@ if __name__ == "__main__":
         chunk_lens.extend([len(chunk) for chunk in documents])
         episode_lens.append(sum(chunk_lens))
         vector_store.add_documents(documents, metadatas)
-        breakpoint()

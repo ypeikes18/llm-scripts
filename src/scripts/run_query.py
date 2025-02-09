@@ -18,19 +18,14 @@ Transcript: \n
 
 TEST_QUERY_2 = "Given the transcripts of the episode below what is the most effective intervention for helping reduce insect suffering discussed in the 80000 hours podcast? Use the search tool call to find the answer."
 
-NUM_TRANSCRIPTS = 5
 def run_query():
     # initialize agent with tools
     agent = Agent(actions=[Knowledge(), Search()])
-    query_result = agent.execute_task(
-        TEST_QUERY_2    
-    )
-    for transcript in get_files("./transcripts")[:NUM_TRANSCRIPTS]:
+    for transcript in get_files("./test_transcripts"):
         print(f"title: {transcript['episode_title']} length: {len(transcript['content'])}")
         query = TEST_QUERY_1 + transcript['content']
         query_result = agent.execute_task(query)
         print(f"Query Response: {query_result['response']}")
-        breakpoint()
 
 if __name__ == "__main__":
     run_query() 
